@@ -1,4 +1,4 @@
-package tui
+package view
 
 import (
 	"github.com/marcusolsson/tui-go"
@@ -11,6 +11,18 @@ type ChatView struct {
 	frame    *tui.Box
 	history  *tui.Box
 	onSubmit SubmitMessageHandler
+}
+
+func (c *ChatView) OnSubmit(handler SubmitMessageHandler) {
+	c.onSubmit = handler
+}
+
+func (c *ChatView) AddMessage(msg string) {
+	c.history.Append(
+		tui.NewHBox(
+			tui.NewLabel(msg),
+		),
+	)
 }
 
 func NewChatView() *ChatView {
@@ -50,16 +62,4 @@ func NewChatView() *ChatView {
 	view.Append(view.frame)
 
 	return view
-}
-
-func (c *ChatView) OnSubmit(handler SubmitMessageHandler) {
-	c.onSubmit = handler
-}
-
-func (c *ChatView) AddMessage(msg string) {
-	c.history.Append(
-		tui.NewHBox(
-			tui.NewLabel(msg),
-		),
-	)
 }

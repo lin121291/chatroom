@@ -1,4 +1,4 @@
-package tui
+package view
 
 import (
 	"github.com/marcusolsson/tui-go"
