@@ -3,7 +3,7 @@ package client
 import "chatroom/tube"
 
 type ChatClient interface {
-	Dial(address string) error //Dial 建立連線並且建立通訊協議的reader和writer
+	Dial(address string) error
 	Start()
 	Close()
 	Send(command interface{}) error

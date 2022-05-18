@@ -8,7 +8,7 @@ import (
 	"github.com/marcusolsson/tui-go"
 )
 
-func UI(c client.ChatClient) { //這邊不知道為什麼傳給街口就沒問題
+func UI(c client.ChatClient) {
 	loginView := NewLoginView()
 	chatView := NewChatView()
 
@@ -23,7 +23,7 @@ func UI(c client.ChatClient) { //這邊不知道為什麼傳給街口就沒問�
 	ui.SetKeybinding("Ctrl+c", quit)
 
 	loginView.OnLogin(func(username string) {
-		c.SetName(username) //該位使用者名稱
+		c.SetName(username)
 		ui.SetWidget(chatView)
 	})
 
@@ -44,7 +44,6 @@ func UI(c client.ChatClient) { //這邊不知道為什麼傳給街口就沒問�
 					panic(err)
 				}
 			case msg := <-c.Incoming():
-				// we need to make the change via ui update to make sure the ui is repaint correctly
 				ui.Update(func() {
 					chatView.AddMessage(fmt.Sprintf("%v: %v", msg.Name, msg.Message))
 				})

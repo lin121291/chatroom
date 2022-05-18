@@ -7,7 +7,7 @@ import (
 )
 
 type TcpChatClient struct {
-	conn      net.Conn //連線
+	conn      net.Conn
 	cmdReader *tube.CommandReader
 	cmdWriter *tube.CommandWriter
 	name      string
@@ -22,7 +22,6 @@ func NewClient() *TcpChatClient {
 	}
 }
 
-//在這裡把TcpChatClient裡的conn接上tcp
 func (c *TcpChatClient) Dial(address string) error {
 	conn, err := net.Dial("tcp", address)
 
@@ -41,7 +40,7 @@ func (c *TcpChatClient) Start() {
 
 		if err != nil {
 			c.error <- err
-			break // TODO: find a way to recover from this
+			break
 		}
 
 		if cmd != nil {
@@ -67,7 +66,6 @@ func (c *TcpChatClient) Error() chan error {
 	return c.error
 }
 
-//傳到CommandWriter的method
 func (c *TcpChatClient) Send(command interface{}) error {
 	return c.cmdWriter.Write(command)
 }

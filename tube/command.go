@@ -6,8 +6,6 @@ var (
 	UnknownCommand = errors.New("Unknown command")
 )
 
-//所有的指令
-
 // SendCommand is used for sending new message from client
 type SendCommand struct {
 	Message string

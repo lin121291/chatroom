@@ -1,4 +1,3 @@
-//將位元組流轉回字符串
 package tube
 
 import (
@@ -25,7 +24,6 @@ func (w *CommandWriter) writeString(msg string) error {
 //note : 空接口是接口类型的特殊形式，空接口没有任何方法。从实现的角度看，任何值都满足这个接口的需求
 //。因此空接口类型可以保存任何值，也可以从空接口中取出原值
 func (w *CommandWriter) Write(command interface{}) error {
-	// naive implementation ...
 	var err error
 
 	switch v := command.(type) {
